@@ -1,0 +1,24 @@
+server:
+  port: 9914
+spring:
+  application:
+    name: cloud-gw
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      routes:
+        - id: demo
+          uri: http://www.baidu.com
+          predicates:
+            - Path=/test/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9601/eureka/
+  instance:
+    ip-address: ${spring.cloud.client.ip-address}
+    hostname: ${eureka.instance.ip-address}
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${eureka.instance.ip-address}:${server.port}
+
