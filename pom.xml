@@ -20,6 +20,9 @@
 		<module>eureka-server</module>
 		<module>cloud-gw</module>
 		<module>common</module>
+		<module>provider-server</module>
+		<module>cloud-client</module>
+		<module>caller-server</module>
 	</modules>
 
 
@@ -32,13 +35,16 @@
 
 		<!--    内部模块依赖    -->
 		<common.version>0.0.1-SNAPSHOT</common.version>
+		<cloud-client.version>0.0.1-SNAPSHOT</cloud-client.version>
 
-
+		<!-- 外部依赖 -->
 		<spring-cloud-starter.version>2.1.0.RELEASE</spring-cloud-starter.version>
 		<spring-cloud-starter-gateway.version>2.1.0.RELEASE</spring-cloud-starter-gateway.version>
 		<spring-cloud-starter-netflix-eureka-client.version>2.1.0.RELEASE</spring-cloud-starter-netflix-eureka-client.version>
 		<spring-cloud-starter-openfeign.version>2.1.0.RELEASE</spring-cloud-starter-openfeign.version>
 		<spring-cloud-starter-netflix-eureka-server.version>2.0.2.RELEASE</spring-cloud-starter-netflix-eureka-server.version>
+		<spring-cloud-starter-netflix-hystrix.version>2.0.2.RELEASE</spring-cloud-starter-netflix-hystrix.version>
+
 
 	</properties>
 
@@ -71,7 +77,11 @@
 				<artifactId>common</artifactId>
 				<version>${common.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>cn.zhoufan</groupId>
+				<artifactId>cloud-client</artifactId>
+				<version>${cloud-client.version}</version>
+			</dependency>
 
 
 			<dependency>
@@ -87,6 +97,12 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 				<version>${spring-cloud-starter-netflix-eureka-server.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+				<version>${spring-cloud-starter-netflix-hystrix.version}</version>
 			</dependency>
 
 			<dependency>
@@ -124,6 +140,12 @@
 				<artifactId>lombok</artifactId>
 				<version>1.18.8</version>
 				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>2.1.9.RELEASE</version>
 			</dependency>
 
 			<dependency>

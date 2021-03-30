@@ -1,17 +1,22 @@
 server:
-  port: 9914
+  port: 8400
 spring:
   application:
-    name: cloud-gw
-  main:
-    allow-bean-definition-overriding: true
-  cloud:
-    gateway:
-      routes:
-        - id: caller-server
-          uri: lb://caller-server
-          predicates:
-            - Path=/caller/server/**
+    name: caller-server
+
+
+
+# 开启Feign对Hystrix的支持
+feign:
+  hystrix:
+    enabled: true
+
+  client:
+    config:
+      default:
+        connectTimeout: 5000  # 指定Feign连接提供者的超时时限
+
+
 eureka:
   client:
     service-url:
@@ -21,4 +26,3 @@ eureka:
     hostname: ${eureka.instance.ip-address}
     prefer-ip-address: false
     instance-id: ${spring.application.name}:${eureka.instance.ip-address}:${server.port}
-
